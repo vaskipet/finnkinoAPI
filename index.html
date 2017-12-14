@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Finnkino API</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body id="home">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top py-4">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <img src="img/vaspet_red.png" width="50" height="50" alt="">
+                <h3 class="d-inline align-middle">Finnkino API SPA</h3>
+            </a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SHOWCASE -->
+    <section id="showcase" class="py-5">
+        <div class="primary-overlay text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-center">
+                        <h1 class="display-2 mt-5 pt-5">
+                            Movies from around the country!
+                        </h1>
+                        <p class="lead">Find movies you want to watch!</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="http://media.finnkino.fi/1012/Event_11735/portrait_medium/StarWarsTLJ_1080t.jpg" alt="" class="img-fluid d-none d-lg-block mt-5 ml-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter" class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <select type="text" id="select" class="form-control form-control-lg mb-5" onchange="displayData()">
+                </div>
+                <div class="col-md-12">
+                    <input type="text" id="search" class="form-control form-control-lg" placeholder="Filter the search-results...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOVIES COME HERE -->
+    <section id="boxes" class="py-5">
+        <div class="container">
+            <div class="row" id="leffat">
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-5 text-center bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="info-header mb-5">
+                        <h1 class="text-dark pb-3">
+                            About this APP
+                        </h1>
+                        <p class="lead pb-3">
+                            This is the final application made for the course Dynamic Web Applications in Laurea University of Applied Sciences.
+                        </p>
+                    </div>
+
+                    <!-- ACCORDION -->
+                    <div id="accordion" role="tablist">
+                        <div class="card">
+                            <div class="card-header" id="heading1">
+                                <h5 class="mb-0">
+                                    <div href="#collapse1" data-toggle="collapse" data-parent="#accordion">
+                                        <i class="fa fa-arrow-circle-down"></i> How to use this app?
+                                    </div>
+                                </h5>
+                            </div>
+
+                            <div id="collapse1" class="collapse show">
+                                <div class="card-body">
+                                 Simply select the theater from the dropdown and then all the showings will be diplayed below. The application shows only current day´s shows that are still available. So if you search for shows at 17:00, it will only display shows after that time. <br>
+                                 After you have picked a theatre, you can filter your search by typing the movie you want to watch.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" id="heading2">
+                                <h5 class="mb-0">
+                                    <div href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+                                        <i class="fa fa-arrow-circle-down"></i> Known bugs...
+                                    </div>
+                                </h5>
+                            </div>
+
+                            <div id="collapse2" class="collapse">
+                                <div class="card-body">
+                                  <ol>
+                                    <li>This application relies on the API provided by Finnkino. I have developed this app since 13th of December and as far as I know there have been no problems thus far.</li>
+                                    <li>Finnkino apparently changes the schedules every tuesday and on tuesdays there might be some minor problems with the API, but that remains to be seen...</li>
+                                    <li>Edit: Apparently if you filter the movies with the search input, it will also hide the navigation links. I noticed this too late and wasn´t able to fix the bug.</li>
+                                  </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <footer id="main-footer" class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-6 ml-auto">
+                    <p class="lead">Copyright &copy; 2017</p> <br>
+                    <p>API provided by Finnkino.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
