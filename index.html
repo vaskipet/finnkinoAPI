@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Finnkino API</title>
-    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body id="home">
-    <nav class="navbar navbar-expand-md navbar-light fixed-top py-4">
+    <!-- alunperin lisäksi ekassa class += fixed-top -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light py-4">
         <div class="container">
             <a href="index.html" class="navbar-brand">
                 <img src="img/vaspet_red.png" width="50" height="50" alt="">
@@ -43,8 +43,8 @@
                         </h1>
                         <p class="lead">Find movies you want to watch!</p>
                     </div>
-                    <div class="col-lg-6">
-                        <img src="http://media.finnkino.fi/1012/Event_11735/portrait_medium/StarWarsTLJ_1080t.jpg" alt="" class="img-fluid d-none d-lg-block mt-5 ml-5">
+                    <div class="col-lg-6" id="banner-load">
+                        <!-- <img src="http://media.finnkino.fi/1012/Event_11735/portrait_medium/StarWarsTLJ_1080t.jpg" alt="" class="img-fluid d-none d-lg-block mt-5 ml-5"> -->
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
     </section>
 
     <!-- NEWSLETTER -->
-    <section id="newsletter" class="bg-dark text-white py-5">
+    <section id="searchsection" class="bg-dark text-white py-5 fixed-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -63,7 +63,15 @@
                 </div>
             </div>
         </div>
+        <!-- <div class="col-2  sidebar-offcanvas" id="sidebar"> -->
+            <!-- <div class="list-group"> -->
+                <!-- <a href="#showcase" class="list-group-item active">Top</a> -->
+                <button type="button" class="btn btn-dark"><a href="#showcase">Back to the top</a></button>
+                <button class="btn btn-danger" onclick="refreshPage()">Empty the Results!</button>
+                <!-- </div> -->
+         <!--</div>/span-->
     </section>
+
 
     <!-- MOVIES COME HERE -->
     <section id="boxes" class="py-5">
@@ -100,7 +108,7 @@
 
                             <div id="collapse1" class="collapse show">
                                 <div class="card-body">
-                                 Simply select the theater from the dropdown and then all the showings will be diplayed below. The application shows only current day´s shows that are still available. So if you search for shows at 17:00, it will only display shows after that time. <br>
+                                 Simply select the theater from the dropdown and then all the showings will be displayed in a table. The application shows only current day´s shows that are still available. So if you search for shows at 17:00, it will only display shows after that time. <br>
                                  After you have picked a theatre, you can filter your search by typing the movie you want to watch.
                                 </div>
                             </div>
@@ -138,6 +146,7 @@
                 <div class="col-md-6 ml-auto">
                     <p class="lead">Copyright &copy; 2017</p> <br>
                     <p>API provided by Finnkino.</p>
+                    <p>Pictures provided by Finnkino/pexels.com</p>
                 </div>
             </div>
         </div>

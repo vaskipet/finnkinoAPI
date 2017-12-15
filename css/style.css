@@ -1,11 +1,13 @@
 body {
-    margin-top: 110px;
+    /* margin-top: 110px; */
+    margin-bottom: 210px;
 }
 
 .navbar {
     box-shadow: 2px 2px 5px #a63238;
     opacity: 0.9;
     background: #fff;
+    /* position: relative; */
 }
 
 .navbar .nav-item {
@@ -19,6 +21,11 @@ body {
     min-height: 600px;
 }
 
+#searchsection {
+    opacity: 1.0;
+    height: 230px;
+}
+
 #showcase .primary-overlay {
     background: rgba(166, 50, 50, 0.8);
     position: absolute;
@@ -28,8 +35,25 @@ body {
     height: 100%;
 }
 
-.info-header {
+
+/* .fade-in {
+    -webkit-animation: fade-in 2s ease;
+    -moz-animation: fade-in ease-in-out 2s both;
+    -ms-animation: fade-in ease-in-out 2s both;
+    -o-animation: fade-in ease-in-out 2s both;
+    animation: fade-in 2s ease;
+    visibility: visible;
+    -webkit-backface-visibility: hidden;
+} */
+
+
+/* .info-header {
     width: 50%;
     margin: auto;
     border-bottom: 1px #ddd solid;
-}
+} */
+
+
+/* table:nth-child(odd) {
+    background-color: rgba(166, 50, 50, 0.8);
+} */

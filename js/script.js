@@ -13,19 +13,26 @@ if (mm < 10) {
 // variable "today" will be used in the URL later on
 var today = dd + '.' + mm + '.' + yyyy;
 
-var today2 = new Date();
-var h = today2.getHours();
-var m = today2.getMinutes();
+var time = new Date();
+var h = time.getHours();
+var m = time.getMinutes();
 
 if (h < 10) { h = '0' + h }
 if (m < 10) { m = '0' + m }
-var today2 = h + ':' + m;
-console.log(today2);
+var time = h + ':' + m;
+console.log(time);
 // console.log(today);
 
-//when the window loads this function will fire
+//when the window loads these functions will fire
 // the function fetches all the available theaters to user´s selcetion
 window.onload = function() {
+
+    //Adding images to an array
+    var images = ['StarWars.jpg', 'TuntematonSotilas.jpg', 'TheForeigner.jpg', 'ABadMomsChristmas.jpg', 'Armomurhaaja.jpg', 'MuumienTaikatalvi.jpg', 'HeinahattuVilttitossu.jpg'];
+
+    //jquery will randomize pictures in the big banner
+    $('<img class="fade-in img-fluid d-none d-lg-block mt-5 ml-5" src="../img/' + images[Math.floor(Math.random() * images.length)] + '"/>').appendTo('#banner-load');
+
     var url = 'http://www.finnkino.fi/xml/TheatreAreas/';
 
     var xhr = new XMLHttpRequest();
@@ -77,8 +84,8 @@ function displayData() {
             var text = '';
 
             for (var i = 0; i < startTime.length; i++) {
-                if (today2 < startTime[i].childNodes[0].nodeValue.slice(11, 16)) {
-                    var movieitem = document.createElement('li');
+                if (time < startTime[i].childNodes[0].nodeValue.slice(11, 16)) {
+                    var movieitem = document.createElement('table'); //li alunperin
                     console.log(movieitem);
                     movieitem.className = 'leffalista';
                     movieitem.className = 'card text-center border-primary col-md-4 card-body';
@@ -108,13 +115,14 @@ function displayData() {
             }
         }
     }
+
 }
 
 var search = document.getElementById('search');
 search.addEventListener('keyup', function(e) {
     var term = e.target.value.toLowerCase(); //listens to what is written in the input and transforms it to lowercase
     console.log(term);
-    var movies = document.getElementsByTagName('li'); //h4 toimii
+    var movies = document.getElementsByTagName('table'); //h4 toimii
     // var movies = document.getElementsByClassName('leffalista'); //testi
     Array.from(movies).forEach(function(movie) {
         var title = movie.firstChild.textContent;
@@ -125,4 +133,17 @@ search.addEventListener('keyup', function(e) {
             movie.style.display = 'none';
         }
     })
+})
+
+// Refreshpage
+function refreshPage() {
+    location.reload();
+}
+
+// adding a smoother transition when clickin on links
+$('a').click(function() {
+    $('html, body').animate({
+        scrollTop: $($(this).attr('href')).offset().top
+    }, 500);
+    return false;
 })
