@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Finnkino API</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body id="home">
-    <!-- alunperin lisäksi ekassa class += fixed-top -->
+
     <nav class="navbar navbar-expand-md navbar-light bg-light py-4">
         <div class="container">
             <a href="index.html" class="navbar-brand">
@@ -22,9 +23,6 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="#about" class="nav-link">About</a>
                     </li>
                 </ul>
@@ -32,8 +30,8 @@
         </div>
     </nav>
 
-    <!-- SHOWCASE -->
-    <section id="showcase" class="py-5">
+    <!-- JUMBOTRON -->
+    <section id="jumbotron" class="py-5">
         <div class="primary-overlay text-white">
             <div class="container">
                 <div class="row">
@@ -44,37 +42,34 @@
                         <p class="lead">Find movies you want to watch!</p>
                     </div>
                     <div class="col-lg-6" id="banner-load">
-                        <!-- <img src="http://media.finnkino.fi/1012/Event_11735/portrait_medium/StarWarsTLJ_1080t.jpg" alt="" class="img-fluid d-none d-lg-block mt-5 ml-5"> -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- NEWSLETTER -->
+    <!-- SEARCHSECTION -->
     <section id="searchsection" class="bg-dark text-white py-5 fixed-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <select type="text" id="select" class="form-control form-control-lg mb-5" onchange="displayData()">
+                    <select type="text" id="select" class="form-control form-control-lg mb-3" onchange="displayData()">
                 </div>
                 <div class="col-md-12">
                     <input type="text" id="search" class="form-control form-control-lg" placeholder="Filter the search-results...">
                 </div>
             </div>
         </div>
-        <!-- <div class="col-2  sidebar-offcanvas" id="sidebar"> -->
-            <!-- <div class="list-group"> -->
-                <!-- <a href="#showcase" class="list-group-item active">Top</a> -->
-                <button type="button" class="btn btn-dark"><a href="#showcase">Back to the top</a></button>
+                <!-- <button type="button" class="btn btn-dark float-right"><a class="nav-link" href="#jumbotron">Back to the top</a></button> -->
+                <a class="nav-link float-right" href="#jumbotron">Back to the top</a>
                 <button class="btn btn-danger" onclick="refreshPage()">Empty the Results!</button>
-                <!-- </div> -->
-         <!--</div>/span-->
-    </section>
+            </section>
+
 
 
     <!-- MOVIES COME HERE -->
-    <section id="boxes" class="py-5">
+    <section id="boxes" class="py-5 expanded">
+        <button class="btn btn-outline-dark col-lg" id="fader">Hide the Searchbar</button>
         <div class="container">
             <div class="row" id="leffat">
             </div>
@@ -109,7 +104,8 @@
                             <div id="collapse1" class="collapse show">
                                 <div class="card-body">
                                  Simply select the theater from the dropdown and then all the showings will be displayed in a table. The application shows only current day´s shows that are still available. So if you search for shows at 17:00, it will only display shows after that time. <br>
-                                 After you have picked a theatre, you can filter your search by typing the movie you want to watch.
+                                 After you have picked a theatre, you can filter your search by typing the movie you want to watch. <br>
+                                 You can hide the search bar from the button under the jumbotron to see a bit better the results.
                                 </div>
                             </div>
                         </div>
@@ -128,7 +124,6 @@
                                   <ol>
                                     <li>This application relies on the API provided by Finnkino. I have developed this app since 13th of December and as far as I know there have been no problems thus far.</li>
                                     <li>Finnkino apparently changes the schedules every tuesday and on tuesdays there might be some minor problems with the API, but that remains to be seen...</li>
-                                    <li>Edit: Apparently if you filter the movies with the search input, it will also hide the navigation links. I noticed this too late and wasn´t able to fix the bug.</li>
                                   </ol>
                                 </div>
                             </div>
@@ -152,9 +147,10 @@
         </div>
     </footer>
 
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
     <script src="js/script.js"></script>
 </body>
 

@@ -31,7 +31,7 @@ window.onload = function() {
     var images = ['StarWars.jpg', 'TuntematonSotilas.jpg', 'TheForeigner.jpg', 'ABadMomsChristmas.jpg', 'Armomurhaaja.jpg', 'MuumienTaikatalvi.jpg', 'HeinahattuVilttitossu.jpg'];
 
     //jquery will randomize pictures in the big banner
-    $('<img class="fade-in img-fluid d-none d-lg-block mt-5 ml-5" src="../img/' + images[Math.floor(Math.random() * images.length)] + '"/>').appendTo('#banner-load');
+    $('<img class="img-fluid d-none d-lg-block mt-5 ml-5" src="../img/' + images[Math.floor(Math.random() * images.length)] + '"/>').appendTo('#banner-load');
 
     var url = 'http://www.finnkino.fi/xml/TheatreAreas/';
 
@@ -63,7 +63,6 @@ function displayData() {
     // var date = getDate();
     var userSelection = document.getElementById('select').value;
 
-
     var displayxhr = new XMLHttpRequest();
     displayxhr.open('GET', 'http://www.finnkino.fi/xml/Schedule/?area=' + userSelection + '&dt=' + today, true);
     displayxhr.send();
@@ -78,9 +77,6 @@ function displayData() {
             var endTime = xmlDoc.getElementsByTagName('dttmShowEnd');
             var theatre = xmlDoc.getElementsByTagName('Theatre');
 
-            // console.log(movieitem);
-            // displayin the information in a variable 
-            // var text = '<ul id="leffa-list" style="list-style-type: none;" class="mt-5">';
             var text = '';
 
             for (var i = 0; i < startTime.length; i++) {
@@ -88,34 +84,23 @@ function displayData() {
                     var movieitem = document.createElement('table'); //li alunperin
                     console.log(movieitem);
                     movieitem.className = 'leffalista';
-                    movieitem.className = 'card text-center border-primary col-md-4 card-body';
+                    movieitem.className = 'card text-center border-danger col-md-4 card-body';
                     // console.log('nomovies');
                     var leffat = document.getElementById('leffat');
                     var image = xmlDoc.getElementsByTagName('EventMediumImagePortrait');
                     var img = '<h4>' + titles[i].childNodes[0].nodeValue + '</h4>' +
                         '<img class="img-fluid w-50 mb-3 mx-auto" src="' + image[i].childNodes[0].nodeValue + '"/>' +
                         '<h6>' + theatre[i].childNodes[0].nodeValue + '</h6>' +
-                        'Elokuva alkaa kello: ' + startTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br>' +
-                        'Elokuva päättyy kello: ' + endTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br><hr>';
+                        'The movie starts: ' + startTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br>' +
+                        'The movie ends: ' + endTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br><hr>';
                     movieitem.innerHTML = img;
-                    // movieitem.appendChild(document.createTextNode(image[i].childNodes[0].nodeValue));
-                    // movieitem.appendChild(document.createTextNode(img));
-                    // movieitem.appendChild(img);
 
                     leffat.appendChild(movieitem);
                     console.log(leffat);
-                    // text += '<li><h4>' + titles[i].childNodes[0].nodeValue + '</h4>' +
-                    //     '<img src="' + image[i].childNodes[0].nodeValue + '"/>' +
-                    //     // '<h4>' + titles[i].childNodes[0].nodeValue + '</h4>' +
-                    //     '<h6>' + theatre[i].childNodes[0].nodeValue + '</h6><br>' +
-                    //     'Elokuva alkaa kello: ' + startTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br>' +
-                    //     'Elokuva päättyy kello: ' + endTime[i].childNodes[0].nodeValue.slice(11, 16) + '</li><br><hr>';
-                    // document.getElementById('leffat').innerHTML = '</ul>' + text;
                 }
             }
         }
     }
-
 }
 
 var search = document.getElementById('search');
@@ -135,7 +120,7 @@ search.addEventListener('keyup', function(e) {
     })
 })
 
-// Refreshpage
+// Refres hpage
 function refreshPage() {
     location.reload();
 }
@@ -146,4 +131,19 @@ $('a').click(function() {
         scrollTop: $($(this).attr('href')).offset().top
     }, 500);
     return false;
+})
+
+$(document).ready(function() {
+    $('#fader').click(function() {
+        var $this = $(this);
+        $('#searchsection').toggle('slow');
+
+        $this.toggleClass('expanded');
+
+        if ($this.hasClass('expanded')) {
+            $this.html('Show the Searchbar');
+        } else {
+            $this.html('HIde the Searcbar');
+        }
+    })
 })
