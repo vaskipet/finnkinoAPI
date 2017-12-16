@@ -60,16 +60,14 @@
                 </div>
             </div>
         </div>
-                <!-- <button type="button" class="btn btn-dark float-right"><a class="nav-link" href="#jumbotron">Back to the top</a></button> -->
+
                 <a class="nav-link float-right" href="#jumbotron">Back to the top</a>
                 <button class="btn btn-danger" onclick="refreshPage()">Empty the Results!</button>
             </section>
 
-
-
     <!-- MOVIES COME HERE -->
     <section id="boxes" class="py-5 expanded">
-        <button class="btn btn-outline-dark col-lg" id="fader">Hide the Searchbar</button>
+        <button class="btn btn-outline-dark col-lg mb-3" id="fader">Hide the Searchbar</button>
         <div class="container">
             <div class="row" id="leffat">
             </div>
@@ -103,10 +101,13 @@
 
                             <div id="collapse1" class="collapse show">
                                 <div class="card-body">
-                                 Simply select the theater from the dropdown and then all the showings will be displayed in a table. The application shows only current day´s shows that are still available. So if you search for shows at 17:00, it will only display shows after that time. <br>
-                                 After you have picked a theatre, you can filter your search by typing the movie you want to watch. <br>
-                                 You can hide the search bar from the button under the jumbotron to see a bit better the results.
-                                </div>
+                                    <ol>
+                                        <li>Simply select the theater from the dropdown and then all the showings will be displayed in a table.</li>
+                                        <li>The application shows only current day´s shows that are still available. So if you search for shows at 17:00, it will only display shows after that time.</li>
+                                        <li>After you have picked a theatre, you can filter your search by typing the movie you want to watch.</li>
+                                        <li>You can hide the search bar from the button under the jumbotron to see a bit better the results.</li>
+                                    </ol>
+                             </div>
                             </div>
                         </div>
 
@@ -124,6 +125,10 @@
                                   <ol>
                                     <li>This application relies on the API provided by Finnkino. I have developed this app since 13th of December and as far as I know there have been no problems thus far.</li>
                                     <li>Finnkino apparently changes the schedules every tuesday and on tuesdays there might be some minor problems with the API, but that remains to be seen...</li>
+                                    <li>Also during the time when the API is being refreshed (the day is changing or there are new shows being scheduled), there might be some bugs with pictures and booking-links. It will take about couple of hours before the problem is fixed.</li>
+                                        <ul style="list-style:none;">
+                                            <li>=>Because the problem is only temporary, there is yet no error-handling solution to it.</li>
+                                        </ul>
                                   </ol>
                                 </div>
                             </div>

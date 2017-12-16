@@ -76,27 +76,47 @@ function displayData() {
             var startTime = xmlDoc.getElementsByTagName('dttmShowStart');
             var endTime = xmlDoc.getElementsByTagName('dttmShowEnd');
             var theatre = xmlDoc.getElementsByTagName('Theatre');
+            var ratingImg = xmlDoc.getElementsByTagName('RatingImageUrl');
+            var showUrl = xmlDoc.getElementsByTagName('ShowURL');
+            // var image = xmlDoc.getElementsByTagName('EventMediumImagePortrait');
+            var image = xmlDoc.getElementsByTagName('EventLargeImagePortrait');
 
             var text = '';
+
+            // Error handling if the Finnkino has not updated all the images
+            if (image.length != titles.length) {
+                var warning = document.createElement('table');
+                warning.className = 'leffalista';
+                warning.className = 'card text-center border-danger col-md-4 card-body warning text-white';
+                var leffat = document.getElementById('leffat');
+                // The first item in the list is going to be a warning box with red background and white warning-text
+                var warningText = '<h2> There is something wrong with the API!</h2><br><br>Not all of the images are displayed correctly at the moment. You can reset your search and try another smaller theater or come back at a later hour.';
+                warning.innerHTML = warningText;
+                leffat.appendChild(warning);
+            }
 
             for (var i = 0; i < startTime.length; i++) {
                 if (time < startTime[i].childNodes[0].nodeValue.slice(11, 16)) {
                     var movieitem = document.createElement('table'); //li alunperin
                     console.log(movieitem);
                     movieitem.className = 'leffalista';
-                    movieitem.className = 'card text-center border-danger col-md-4 card-body';
+                    movieitem.className = 'card text-center border-dark col-md-4 card-body';
                     // console.log('nomovies');
                     var leffat = document.getElementById('leffat');
-                    var image = xmlDoc.getElementsByTagName('EventMediumImagePortrait');
-                    var img = '<h4>' + titles[i].childNodes[0].nodeValue + '</h4>' +
+                    var img = '<h4>' + titles[i].childNodes[0].nodeValue + '<img style="width: 25px;" src="' + ratingImg[i].childNodes[0].nodeValue + '"/></h4>' +
                         '<img class="img-fluid w-50 mb-3 mx-auto" src="' + image[i].childNodes[0].nodeValue + '"/>' +
                         '<h6>' + theatre[i].childNodes[0].nodeValue + '</h6>' +
                         'The movie starts: ' + startTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br>' +
-                        'The movie ends: ' + endTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br><hr>';
+                        'The movie ends: ' + endTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br>' +
+                        '<button class="btn btn-default"> <a href="' + showUrl[i].childNodes[0].nodeValue + '">Book it! </a></button><hr>';
+                    // '<img class="img-fluid w-25 mb-1 mx-auto" src="' + ratingImg[i].childNodes[0].nodeValue + '"/><hr>';
                     movieitem.innerHTML = img;
 
                     leffat.appendChild(movieitem);
                     console.log(leffat);
+
+                } else if (titles[i].childNodes[0].nodeValue.length() != image[i].childNodes[0].nodeValue.lenght) {
+                    console.log('something is a miss!');
                 }
             }
         }
@@ -106,12 +126,12 @@ function displayData() {
 var search = document.getElementById('search');
 search.addEventListener('keyup', function(e) {
     var term = e.target.value.toLowerCase(); //listens to what is written in the input and transforms it to lowercase
-    console.log(term);
+    // console.log(term);
     var movies = document.getElementsByTagName('table'); //h4 toimii
     // var movies = document.getElementsByClassName('leffalista'); //testi
     Array.from(movies).forEach(function(movie) {
         var title = movie.firstChild.textContent;
-        console.log(title);
+        // console.log(title);
         if (title.toLowerCase().indexOf(term) != -1) {
             movie.style.display = 'block';
         } else {

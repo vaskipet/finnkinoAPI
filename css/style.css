@@ -35,25 +35,6 @@ body {
     height: 100%;
 }
 
-
-/* .fade-in {
-    -webkit-animation: fade-in 2s ease;
-    -moz-animation: fade-in ease-in-out 2s both;
-    -ms-animation: fade-in ease-in-out 2s both;
-    -o-animation: fade-in ease-in-out 2s both;
-    animation: fade-in 2s ease;
-    visibility: visible;
-    -webkit-backface-visibility: hidden;
-} */
-
-
-/* .info-header {
-    width: 50%;
-    margin: auto;
-    border-bottom: 1px #ddd solid;
-} */
-
-
-/* table:nth-child(odd) {
-    background-color: rgba(166, 50, 50, 0.8);
-} */
+.warning {
+    background: red;
+}
