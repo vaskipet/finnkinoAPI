@@ -1,4 +1,5 @@
 //storing the current day into a variable that will be used later
+// in the API´s URL
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1;
@@ -13,6 +14,8 @@ if (mm < 10) {
 // variable "today" will be used in the URL later on
 var today = dd + '.' + mm + '.' + yyyy;
 
+// another varialble that will be used later
+// in order to check the time and fetch movies based on that
 var time = new Date();
 var h = time.getHours();
 var m = time.getMinutes();
@@ -31,6 +34,7 @@ window.onload = function() {
     var images = ['StarWars.jpg', 'TuntematonSotilas.jpg', 'TheForeigner.jpg', 'ABadMomsChristmas.jpg', 'Armomurhaaja.jpg', 'MuumienTaikatalvi.jpg', 'HeinahattuVilttitossu.jpg'];
 
     //jquery will randomize pictures in the big banner
+    // not using the API for this, rather static pictures from img-folder
     $('<img class="img-fluid d-none d-lg-block mt-5 ml-5" src="../img/' + images[Math.floor(Math.random() * images.length)] + '"/>').appendTo('#banner-load');
 
     var url = 'http://www.finnkino.fi/xml/TheatreAreas/';
@@ -47,18 +51,21 @@ window.onload = function() {
             var name = xmlDoc.getElementsByTagName('Name');
             var list = document.getElementById('select');
 
+            // iterating through the theater names
             for (var i = 0; i < name.length; i++) {
                 // console.log(name[i]);
                 var option = document.createElement('option');
                 option.value = area[i].firstChild.data;
                 var optionText = document.createTextNode(name[i].firstChild.data);
                 list.appendChild(option);
+                // creating elements to the dropdown menu
                 option.appendChild(optionText);
             }
         }
     }
 }
 
+// for displaying all the necessary information
 function displayData() {
     // var date = getDate();
     var userSelection = document.getElementById('select').value;
@@ -72,6 +79,7 @@ function displayData() {
         if (displayxhr.readyState == 4 && displayxhr.status == 200) {
             var xmlDoc = displayxhr.responseXML;
             console.log(xmlDoc);
+            // saving all the data into variables that we can use later in the scope of this function
             var titles = xmlDoc.getElementsByTagName('Title');
             var startTime = xmlDoc.getElementsByTagName('dttmShowStart');
             var endTime = xmlDoc.getElementsByTagName('dttmShowEnd');
@@ -81,7 +89,7 @@ function displayData() {
             // var image = xmlDoc.getElementsByTagName('EventMediumImagePortrait');
             var image = xmlDoc.getElementsByTagName('EventLargeImagePortrait');
 
-            var text = '';
+            // var text = '';
 
             // Error handling if the Finnkino has not updated all the images
             if (image.length != titles.length) {
@@ -94,7 +102,7 @@ function displayData() {
                 warning.innerHTML = warningText;
                 leffat.appendChild(warning);
             }
-
+            // if everything is okay then we will display the information for the user
             for (var i = 0; i < startTime.length; i++) {
                 if (time < startTime[i].childNodes[0].nodeValue.slice(11, 16)) {
                     var movieitem = document.createElement('table'); //li alunperin
@@ -111,7 +119,7 @@ function displayData() {
                         '<button class="btn btn-default"> <a href="' + showUrl[i].childNodes[0].nodeValue + '">Book it! </a></button><hr>';
                     // '<img class="img-fluid w-25 mb-1 mx-auto" src="' + ratingImg[i].childNodes[0].nodeValue + '"/><hr>';
                     movieitem.innerHTML = img;
-
+                    // appending the information to the correct place on the page
                     leffat.appendChild(movieitem);
                     console.log(leffat);
 
@@ -123,6 +131,7 @@ function displayData() {
     }
 }
 
+// the search functionality
 var search = document.getElementById('search');
 search.addEventListener('keyup', function(e) {
     var term = e.target.value.toLowerCase(); //listens to what is written in the input and transforms it to lowercase
@@ -140,7 +149,7 @@ search.addEventListener('keyup', function(e) {
     })
 })
 
-// Refres hpage
+// Refresh page so that the search results are resetted
 function refreshPage() {
     location.reload();
 }
@@ -153,17 +162,21 @@ $('a').click(function() {
     return false;
 })
 
+// cool jquery effect to hide the searchbar
 $(document).ready(function() {
     $('#fader').click(function() {
         var $this = $(this);
         $('#searchsection').toggle('slow');
 
+        // toggling the class of the item when clicking it
         $this.toggleClass('expanded');
 
+        // if the class is 'expanded' then the text is 'Show the Searchbar'
         if ($this.hasClass('expanded')) {
             $this.html('Show the Searchbar');
         } else {
-            $this.html('HIde the Searcbar');
+            // else it´s Hide the Searchbar
+            $this.html('Hide the Searcbar');
         }
     })
 })
