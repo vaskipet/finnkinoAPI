@@ -11,10 +11,10 @@ if (dd < 10) {
 if (mm < 10) {
     mm = '0' + mm
 }
-// variable "today" will be used in the URL later on
+// variable "today" will be used in the API URL later on
 var today = dd + '.' + mm + '.' + yyyy;
 
-// another varialble that will be used later
+// another variable that will be used later
 // in order to check the time and fetch movies based on that
 var time = new Date();
 var h = time.getHours();
@@ -25,7 +25,8 @@ if (m < 10) { m = '0' + m }
 var time = h + ':' + m;
 
 //when the window loads these functions will fire
-// the function fetches all the available theaters to user´s selcetion
+//First the images will be loaded to the jumbotron
+// the function fetches all the available theaters to user´s selection
 window.onload = function() {
 
     //Adding images to an array
@@ -37,19 +38,22 @@ window.onload = function() {
 
     var url = 'http://www.finnkino.fi/xml/TheatreAreas/';
 
+    // creating XMLHttpRequest object
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.send();
 
+    // handling the response
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
 
+            // creating the necessary variables
             var xmlDoc = xhr.responseXML;
             var area = xmlDoc.getElementsByTagName('ID');
             var name = xmlDoc.getElementsByTagName('Name');
             var list = document.getElementById('select');
 
-            // iterating through the theater names
+            // iterating through the array of theater names
             for (var i = 0; i < name.length; i++) {
 
                 var option = document.createElement('option');
@@ -65,9 +69,10 @@ window.onload = function() {
 
 // for displaying all the necessary information
 function displayData() {
-    // var date = getDate();
+
     var userSelection = document.getElementById('select').value;
 
+    // creating XMLHttpRequest object
     var displayxhr = new XMLHttpRequest();
     displayxhr.open('GET', 'http://www.finnkino.fi/xml/Schedule/?area=' + userSelection + '&dt=' + today, true);
     displayxhr.send();
@@ -86,8 +91,6 @@ function displayData() {
             // var image = xmlDoc.getElementsByTagName('EventMediumImagePortrait');
             var image = xmlDoc.getElementsByTagName('EventLargeImagePortrait');
 
-            // var text = '';
-
             // Error handling if the Finnkino has not updated all the images
             if (image.length != titles.length) {
                 var warning = document.createElement('table');
@@ -101,7 +104,7 @@ function displayData() {
             }
             // if everything is okay then we will display the information for the user
             for (var i = 0; i < startTime.length; i++) {
-                if (time < startTime[i].childNodes[0].nodeValue.slice(11, 16)) {
+                if (time < startTime[i].childNodes[0].nodeValue.slice(11, 16)) { //slicing the value so that it´s the same as the format in variable time
                     var movieitem = document.createElement('table'); //li alunperin
                     // console.log(movieitem);
                     movieitem.className = 'leffalista';
@@ -113,9 +116,8 @@ function displayData() {
                         'The movie starts: ' + startTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br>' +
                         'The movie ends: ' + endTime[i].childNodes[0].nodeValue.slice(11, 16) + '<br>' +
                         '<button class="btn btn-default"> <a href="' + showUrl[i].childNodes[0].nodeValue + '">Book it! </a></button><hr>';
-                    // '<img class="img-fluid w-25 mb-1 mx-auto" src="' + ratingImg[i].childNodes[0].nodeValue + '"/><hr>';
                     movieitem.innerHTML = img;
-                    // appending the information to the correct place on the page
+                    // finally appending the information to the correct place on the page by appending
                     leffat.appendChild(movieitem);
                 }
             }

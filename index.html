@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Finnkino API</title>
+
+    <!-- STYLING -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -19,6 +20,7 @@
                 <img src="img/vaspet_red.png" width="50" height="50" alt="">
                 <h3 class="d-inline align-middle">Finnkino API SPA</h3>
             </a>
+            <!-- NAVBAR FOR MOBILE -->
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
@@ -36,11 +38,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-center">
-                        <h1 class="display-2 mt-5 pt-5">
+                        <h1 class="display-3 mt-3 pt-5 d-lg-block d-md-block">
                             Movies from around the country!
                         </h1>
-                        <p class="lead">Find movies you want to watch!</p>
+                        <!-- diplaying the text on bigger screens, but not on smaller ones -->
+                        <p class="lead d-lg-block d-md-block d-none">Find movies you want to watch!</p>
                     </div>
+                    <!-- PLACE FOR PICTURES -->
                     <div class="col-lg-6" id="banner-load">
                     </div>
                 </div>
@@ -60,7 +64,8 @@
                 </div>
             </div>
         </div>
-
+            <!-- Buttons for the searchsection
+            The search function itself filters results right away -->
                 <a class="nav-link float-right" href="#jumbotron">Back to the top</a>
                 <button class="btn btn-danger" onclick="refreshPage()">Empty the Results!</button>
             </section>
@@ -79,11 +84,11 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="info-header mb-5">
+                    <div class="mb-5">
                         <h1 class="text-dark pb-3">
                             About this APP
                         </h1>
-                        <p class="lead pb-3">
+                        <p class="lead pb-1">
                             This is the final application made for the course Dynamic Web Applications in Laurea University of Applied Sciences.
                         </p>
                     </div>
@@ -105,7 +110,7 @@
                                         <li>Simply select the theater from the dropdown and then all the showings will be displayed in a table.</li>
                                         <li>The application shows only current day´s shows that are still available. So if you search for shows at 17:00, it will only display shows after that time.</li>
                                         <li>After you have picked a theatre, you can filter your search by typing the movie you want to watch.</li>
-                                        <li>You can hide the search bar from the button under the jumbotron to see a bit better the results.</li>
+                                        <li>You can hide the searchbar from the button under the jumbotron to see a bit better the results.</li>
                                     </ol>
                              </div>
                             </div>
@@ -124,10 +129,10 @@
                                 <div class="card-body">
                                   <ol>
                                     <li>This application relies on the API provided by Finnkino. I have developed this app since 13th of December and as far as I know there have been no problems thus far.</li>
-                                    <li>Finnkino apparently changes the schedules every tuesday and on tuesdays there might be some minor problems with the API, but that remains to be seen...</li>
+                                    <li>Finnkino apparently changes the schedules at least every tuesday and on tuesdays there might be some minor problems with the API, but that remains to be seen...</li>
                                     <li>Also during the time when the API is being refreshed (the day is changing or there are new shows being scheduled), there might be some bugs with pictures and booking-links. It will take about couple of hours before the problem is fixed.</li>
                                         <ul style="list-style:none;">
-                                            <li>=>Because the problem is only temporary, there is yet no error-handling solution to it.</li>
+                                            <li>=>Because the problem is likely only temporary, there is yet no error-handling solution to it, since I am not able to duplicate the errors.</li>
                                         </ul>
                                   </ol>
                                 </div>
@@ -146,16 +151,19 @@
                 <div class="col-md-6 ml-auto">
                     <p class="lead">Copyright &copy; 2017</p> <br>
                     <p>API provided by Finnkino.</p>
-                    <p>Pictures provided by Finnkino/pexels.com</p>
+                    <p>ALL the pictures provided by Finnkino/pexels.com</p>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <!-- POPPER.JS WHICH IS NEEDED IN BOOTSTRAP 4 NAV -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <!-- BOOTSTRAP JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <!-- <script src="js/bootstrap.min.js"></script> -->
+    <!-- THE JAVASCRIPT -->
     <script src="js/script.js"></script>
 </body>
 
