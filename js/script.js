@@ -23,8 +23,6 @@ var m = time.getMinutes();
 if (h < 10) { h = '0' + h }
 if (m < 10) { m = '0' + m }
 var time = h + ':' + m;
-console.log(time);
-// console.log(today);
 
 //when the window loads these functions will fire
 // the function fetches all the available theaters to user´s selcetion
@@ -53,7 +51,7 @@ window.onload = function() {
 
             // iterating through the theater names
             for (var i = 0; i < name.length; i++) {
-                // console.log(name[i]);
+
                 var option = document.createElement('option');
                 option.value = area[i].firstChild.data;
                 var optionText = document.createTextNode(name[i].firstChild.data);
@@ -73,12 +71,11 @@ function displayData() {
     var displayxhr = new XMLHttpRequest();
     displayxhr.open('GET', 'http://www.finnkino.fi/xml/Schedule/?area=' + userSelection + '&dt=' + today, true);
     displayxhr.send();
-    console.log(userSelection);
 
     displayxhr.onreadystatechange = function() {
         if (displayxhr.readyState == 4 && displayxhr.status == 200) {
             var xmlDoc = displayxhr.responseXML;
-            console.log(xmlDoc);
+            // console.log(xmlDoc);
             // saving all the data into variables that we can use later in the scope of this function
             var titles = xmlDoc.getElementsByTagName('Title');
             var startTime = xmlDoc.getElementsByTagName('dttmShowStart');
@@ -106,10 +103,9 @@ function displayData() {
             for (var i = 0; i < startTime.length; i++) {
                 if (time < startTime[i].childNodes[0].nodeValue.slice(11, 16)) {
                     var movieitem = document.createElement('table'); //li alunperin
-                    console.log(movieitem);
+                    // console.log(movieitem);
                     movieitem.className = 'leffalista';
                     movieitem.className = 'card text-center border-dark col-md-4 card-body';
-                    // console.log('nomovies');
                     var leffat = document.getElementById('leffat');
                     var img = '<h4>' + titles[i].childNodes[0].nodeValue + '<img style="width: 25px;" src="' + ratingImg[i].childNodes[0].nodeValue + '"/></h4>' +
                         '<img class="img-fluid w-50 mb-3 mx-auto" src="' + image[i].childNodes[0].nodeValue + '"/>' +
@@ -121,10 +117,6 @@ function displayData() {
                     movieitem.innerHTML = img;
                     // appending the information to the correct place on the page
                     leffat.appendChild(movieitem);
-                    console.log(leffat);
-
-                } else if (titles[i].childNodes[0].nodeValue.length() != image[i].childNodes[0].nodeValue.lenght) {
-                    console.log('something is a miss!');
                 }
             }
         }
